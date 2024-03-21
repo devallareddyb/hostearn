@@ -1,200 +1,200 @@
 version: '3' # Adjust the version as needed
 
 services:
-#--------------------------------------------------------------------------------------------------------------------
-# Service: BITPING
-# Site: https://bitping.com
-#--------------------------------------------------------------------------------------------------------------------
-cash-mint_bitping:
-  container_name: cash-mint_bitping
-  image: bitping/bitpingd:latest
-  restart: always
-  volumes:
-    - ${CFG_WORKING_DIRECTORY}/.appdata/bitping:/root/.bitpingd
-  entrypoint: >
-    /bin/bash -c "
-    /app/bitpingd login
-    --email '${CFG_SERVICE_EMAIL}'
-    --password '${CFG_SERVICE_PASSWORD}' &&
-    /app/docker.sh"
-  networks:
-    cash-mint_network:
-      ipv4_address: 20.20.0.3
-  cpus: 0.1
-  mem_limit: 50M
-
-  # --------------------------------------------------------------------------------------------------------------------
-  # Service: EARNFM
-  # Site: https://earn.fm/ref/BEARFZQR (referral)
-  # --------------------------------------------------------------------------------------------------------------------
-  cash-mint_earnfm:
-    container_name: cash-mint_earnfm
-    image: earnfm/earnfm-client:latest
-    restart: always
-    environment:
-      - EARNFM_TOKEN=${CFG_EARNFM_TOKEN}
-    networks:
-      cash-mint_network:
-        ipv4_address: 20.20.0.4
-    cpus: 0.1
-    mem_limit: 50M
-
-  # --------------------------------------------------------------------------------------------------------------------
-  # Service: HONEYGAIN
-  # Site: https://r.honeygain.me/HARYO1972B (referral)
-  # --------------------------------------------------------------------------------------------------------------------
-  cash-mint_honeygain:
-    container_name: cash-mint_honeygain
-    image: honeygain/honeygain:latest
-    restart: always
-    command: >
-      -email ${CFG_HG_EMAIL} 
-      -pass ${CFG_HG_PASSWORD} 
-      -device ${CFG_NODENAME}
-      -tou-accept
-    networks:
-      cash-mint_network:
-        ipv4_address: 20.20.0.5
-    cpus: 0.1
-    mem_limit: 50M
-
-  # --------------------------------------------------------------------------------------------------------------------
-  # Service: PACKETSTREAM
-  # Site: https://packetstream.io/?psr=1RV8 (referral)
-  # --------------------------------------------------------------------------------------------------------------------
-  cash-mint_packetstream:
-    container_name: cash-mint_packetstream
-    image: packetstream/psclient:latest
-    restart: always
-    environment:
-      - CID=${CFG_PACKETSTREAM_CID}
-    networks:
-      cash-mint_network:
-        ipv4_address: 20.20.0.6
-    cpus: 0.1
-    mem_limit: 50M
-
-  # --------------------------------------------------------------------------------------------------------------------
-  # Service: PROXYLITE
-  # Site: https://proxylite.ru/?r=8Q4XCYWF (referral)
-  # --------------------------------------------------------------------------------------------------------------------
-  cash-mint_proxylite:
-    container_name: cash-mint_proxylite
-    image: proxylite/proxyservice:latest
-    restart: always
-    environment:
-      - USER_ID=${CFG_PROXYLITE_ID}
-    networks:
-      cash-mint_network:
-        ipv4_address: 20.20.0.7
-    cpus: 0.1
-    mem_limit: 50M
-
-  # --------------------------------------------------------------------------------------------------------------------
-  # Service: REPOCKET
-  # Site: https://link.repocket.co/WqgJ (referral)
-  # --------------------------------------------------------------------------------------------------------------------
-  cash-mint_repocket:
-    container_name: cash-mint_repocket-1
-    image: repocket/repocket:latest
-    restart: always
-    environment:
-      - RP_EMAIL=${CFG_SERVICE_EMAIL}
-      - RP_API_KEY=${CFG_RP_API_KEY}
-    networks:
-      cash-mint_network:
-        ipv4_address: 20.20.0.8
-    cpus: 0.1
-    mem_limit: 50M
-
-# --------------------------------------------------------------------------------------------------------------------
-  # Service: PAWNS
-  # Site: https://pawns.app/?r=3284830 (referral)
-  # --------------------------------------------------------------------------------------------------------------------
-  cash-mint_pawns:
-    container_name: cash-mint_pawns
-    image: iproyal/pawns-cli:latest
-    restart: always
-    command: >
-      -email=${CFG_SERVICE_EMAIL} 
-      -password=${CFG_SERVICE_PASSWORD} 
-      -device-name=${CFG_NODENAME} 
-      -accept-tos
-    networks:
-      cash-mint_network:
-        ipv4_address: 20.20.0.9
-    cpus: 0.1
-    mem_limit: 50M
-
-# --------------------------------------------------------------------------------------------------------------------
-  # Service: PROXYRACK
-  # Site: https://peer.proxyrack.com/ref/phzcnf5r7nq1idtx4rhgglt6ayrtvqgkb8nwhkic (referral)
-  # --------------------------------------------------------------------------------------------------------------------
-  cash-mint_proxyrack:
-    container_name: cash-mint_proxyrack
-    image: proxyrack/pop:latest
-    restart: always
-    environment:
-      - UUID=${CFG_UUID}
-    networks:
-      cash-mint_network:
-        ipv4_address: 20.20.0.10
-    cpus: 0.1
-    mem_limit: 50M
-
-# --------------------------------------------------------------------------------------------------------------------
-  # Service: TRAFFMONETIZER
-  # Site: https://traffmonetizer.com/?aff=1612556 (referral)
-  # --------------------------------------------------------------------------------------------------------------------
-  cash-mint_traffmonetizer:
-    container_name: cash-mint_traffmonetizer
-    image: traffmonetizer/cli_v2:latest
-    restart: always
-    command: >
-      start 
-      accept 
-      --token ${CFG_TRAFFMONETIZER_TOKEN}
-      --device-name ${CFG_NODENAME}
-      status
-    networks:
-      cash-mint_network:
-        ipv4_address: 20.20.0.11
-    cpus: 0.1
-    mem_limit: 50M
-
-# --------------------------------------------------------------------------------------------------------------------
-  # Service: MYSTERIUM
-  # Site: https://mystnodes.co/?referral_code=qGKgwIJSEpxvOKhZUb1BDsa1xSdPCLjTAWaacX25 (referral)
-  # Local Dashboard: http://localhost:<MYSTERIUM_DASHBOARD_PORT>
-  # --------------------------------------------------------------------------------------------------------------------
-  cash-mint_mysterium:
-    container_name: cash-mint_mysterium
-    image: mysteriumnetwork/myst:latest
+  #--------------------------------------------------------------------------------------------------------------------
+  # Service: BITPING
+  # Site: https://bitping.com
+  #--------------------------------------------------------------------------------------------------------------------
+  cash-mint_bitping:
+    container_name: cash-mint_bitping
+    image: bitping/bitpingd:latest
     restart: always
     volumes:
-      - ${CFG_WORKING_DIRECTORY}/.appdata/mysterium:/var/lib/mysterium-node
-    cap_add:
-      - NET_ADMIN
-    ports:
-      - "4449:4449"
-    command: >
-      service 
-      --agreed-terms-and-conditions
+      - ${CFG_WORKING_DIRECTORY}/.appdata/bitping:/root/.bitpingd
+    entrypoint: >
+      /bin/bash -c "
+      /app/bitpingd login
+      --email '${CFG_SERVICE_EMAIL}'
+      --password '${CFG_SERVICE_PASSWORD}' &&
+      /app/docker.sh"
     networks:
       cash-mint_network:
-        ipv4_address: 20.20.0.12
-    cpus: 0.3
-    mem_limit: 250M
+        ipv4_address: 20.20.0.3
+    cpus: 0.1
+    mem_limit: 50M
 
-# ----------------------------------------------------------------------------------------------------------------------
-# If you know what to do, this option may help in implement a more secure architecture by isolating
-# different components of the application.
-# ----------------------------------------------------------------------------------------------------------------------
-networks:
-  # network for cash-mint_* containers
-  cash-mint_network:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 20.20.0.0/24
+    # --------------------------------------------------------------------------------------------------------------------
+    # Service: EARNFM
+    # Site: https://earn.fm/ref/BEARFZQR (referral)
+    # --------------------------------------------------------------------------------------------------------------------
+    cash-mint_earnfm:
+      container_name: cash-mint_earnfm
+      image: earnfm/earnfm-client:latest
+      restart: always
+      environment:
+        - EARNFM_TOKEN=${CFG_EARNFM_TOKEN}
+      networks:
+        cash-mint_network:
+          ipv4_address: 20.20.0.4
+      cpus: 0.1
+      mem_limit: 50M
+
+    # --------------------------------------------------------------------------------------------------------------------
+    # Service: HONEYGAIN
+    # Site: https://r.honeygain.me/HARYO1972B (referral)
+    # --------------------------------------------------------------------------------------------------------------------
+    cash-mint_honeygain:
+      container_name: cash-mint_honeygain
+      image: honeygain/honeygain:latest
+      restart: always
+      command: >
+        -email ${CFG_HG_EMAIL} 
+        -pass ${CFG_HG_PASSWORD} 
+        -device ${CFG_NODENAME}
+        -tou-accept
+      networks:
+        cash-mint_network:
+          ipv4_address: 20.20.0.5
+      cpus: 0.1
+      mem_limit: 50M
+
+    # --------------------------------------------------------------------------------------------------------------------
+    # Service: PACKETSTREAM
+    # Site: https://packetstream.io/?psr=1RV8 (referral)
+    # --------------------------------------------------------------------------------------------------------------------
+    cash-mint_packetstream:
+      container_name: cash-mint_packetstream
+      image: packetstream/psclient:latest
+      restart: always
+      environment:
+        - CID=${CFG_PACKETSTREAM_CID}
+      networks:
+        cash-mint_network:
+          ipv4_address: 20.20.0.6
+      cpus: 0.1
+      mem_limit: 50M
+
+    # --------------------------------------------------------------------------------------------------------------------
+    # Service: PROXYLITE
+    # Site: https://proxylite.ru/?r=8Q4XCYWF (referral)
+    # --------------------------------------------------------------------------------------------------------------------
+    cash-mint_proxylite:
+      container_name: cash-mint_proxylite
+      image: proxylite/proxyservice:latest
+      restart: always
+      environment:
+        - USER_ID=${CFG_PROXYLITE_ID}
+      networks:
+        cash-mint_network:
+          ipv4_address: 20.20.0.7
+      cpus: 0.1
+      mem_limit: 50M
+
+    # --------------------------------------------------------------------------------------------------------------------
+    # Service: REPOCKET
+    # Site: https://link.repocket.co/WqgJ (referral)
+    # --------------------------------------------------------------------------------------------------------------------
+    cash-mint_repocket:
+      container_name: cash-mint_repocket-1
+      image: repocket/repocket:latest
+      restart: always
+      environment:
+        - RP_EMAIL=${CFG_SERVICE_EMAIL}
+        - RP_API_KEY=${CFG_RP_API_KEY}
+      networks:
+        cash-mint_network:
+          ipv4_address: 20.20.0.8
+      cpus: 0.1
+      mem_limit: 50M
+
+  # --------------------------------------------------------------------------------------------------------------------
+    # Service: PAWNS
+    # Site: https://pawns.app/?r=3284830 (referral)
+    # --------------------------------------------------------------------------------------------------------------------
+    cash-mint_pawns:
+      container_name: cash-mint_pawns
+      image: iproyal/pawns-cli:latest
+      restart: always
+      command: >
+        -email=${CFG_SERVICE_EMAIL} 
+        -password=${CFG_SERVICE_PASSWORD} 
+        -device-name=${CFG_NODENAME} 
+        -accept-tos
+      networks:
+        cash-mint_network:
+          ipv4_address: 20.20.0.9
+      cpus: 0.1
+      mem_limit: 50M
+
+  # --------------------------------------------------------------------------------------------------------------------
+    # Service: PROXYRACK
+    # Site: https://peer.proxyrack.com/ref/phzcnf5r7nq1idtx4rhgglt6ayrtvqgkb8nwhkic (referral)
+    # --------------------------------------------------------------------------------------------------------------------
+    cash-mint_proxyrack:
+      container_name: cash-mint_proxyrack
+      image: proxyrack/pop:latest
+      restart: always
+      environment:
+        - UUID=${CFG_UUID}
+      networks:
+        cash-mint_network:
+          ipv4_address: 20.20.0.10
+      cpus: 0.1
+      mem_limit: 50M
+
+  # --------------------------------------------------------------------------------------------------------------------
+    # Service: TRAFFMONETIZER
+    # Site: https://traffmonetizer.com/?aff=1612556 (referral)
+    # --------------------------------------------------------------------------------------------------------------------
+    cash-mint_traffmonetizer:
+      container_name: cash-mint_traffmonetizer
+      image: traffmonetizer/cli_v2:latest
+      restart: always
+      command: >
+        start 
+        accept 
+        --token ${CFG_TRAFFMONETIZER_TOKEN}
+        --device-name ${CFG_NODENAME}
+        status
+      networks:
+        cash-mint_network:
+          ipv4_address: 20.20.0.11
+      cpus: 0.1
+      mem_limit: 50M
+
+  # --------------------------------------------------------------------------------------------------------------------
+    # Service: MYSTERIUM
+    # Site: https://mystnodes.co/?referral_code=qGKgwIJSEpxvOKhZUb1BDsa1xSdPCLjTAWaacX25 (referral)
+    # Local Dashboard: http://localhost:<MYSTERIUM_DASHBOARD_PORT>
+    # --------------------------------------------------------------------------------------------------------------------
+    cash-mint_mysterium:
+      container_name: cash-mint_mysterium
+      image: mysteriumnetwork/myst:latest
+      restart: always
+      volumes:
+        - ${CFG_WORKING_DIRECTORY}/.appdata/mysterium:/var/lib/mysterium-node
+      cap_add:
+        - NET_ADMIN
+      ports:
+        - "4449:4449"
+      command: >
+        service 
+        --agreed-terms-and-conditions
+      networks:
+        cash-mint_network:
+          ipv4_address: 20.20.0.12
+      cpus: 0.3
+      mem_limit: 250M
+
+  # ----------------------------------------------------------------------------------------------------------------------
+  # If you know what to do, this option may help in implement a more secure architecture by isolating
+  # different components of the application.
+  # ----------------------------------------------------------------------------------------------------------------------
+  networks:
+    # network for cash-mint_* containers
+    cash-mint_network:
+      driver: bridge
+      ipam:
+        driver: default
+        config:
+          - subnet: 20.20.0.0/24
