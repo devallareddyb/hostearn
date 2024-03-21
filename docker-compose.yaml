@@ -1,10 +1,8 @@
 version: "23" # Adjust the version as needed
 
 services:
-  #--------------------------------------------------------------------------------------------------------------------
+
   # Service: BITPING
-  # Site: https://bitping.com
-  #--------------------------------------------------------------------------------------------------------------------
   cash-mint_bitping:
     container_name: cash-mint_bitping
     image: bitping/bitpingd:latest
@@ -23,10 +21,7 @@ services:
     cpus: 0.1
     mem_limit: 50M
 
-  # --------------------------------------------------------------------------------------------------------------------
   # Service: EARNFM
-  # Site: https://earn.fm/ref/BEARFZQR (referral)
-  # --------------------------------------------------------------------------------------------------------------------
   cash-mint_earnfm:
     container_name: cash-mint_earnfm
     image: earnfm/earnfm-client:latest
@@ -39,10 +34,7 @@ services:
     cpus: 0.1
     mem_limit: 50M
 
-  # --------------------------------------------------------------------------------------------------------------------
   # Service: HONEYGAIN
-  # Site: https://r.honeygain.me/HARYO1972B (referral)
-  # --------------------------------------------------------------------------------------------------------------------
   cash-mint_honeygain:
     container_name: cash-mint_honeygain
     image: honeygain/honeygain:latest
@@ -58,10 +50,7 @@ services:
     cpus: 0.1
     mem_limit: 50M
 
-  # --------------------------------------------------------------------------------------------------------------------
   # Service: PACKETSTREAM
-  # Site: https://packetstream.io/?psr=1RV8 (referral)
-  # --------------------------------------------------------------------------------------------------------------------
   cash-mint_packetstream:
     container_name: cash-mint_packetstream
     image: packetstream/psclient:latest
@@ -74,10 +63,7 @@ services:
     cpus: 0.1
     mem_limit: 50M
 
-  # --------------------------------------------------------------------------------------------------------------------
   # Service: PROXYLITE
-  # Site: https://proxylite.ru/?r=8Q4XCYWF (referral)
-  # --------------------------------------------------------------------------------------------------------------------
   cash-mint_proxylite:
     container_name: cash-mint_proxylite
     image: proxylite/proxyservice:latest
@@ -90,10 +76,7 @@ services:
     cpus: 0.1
     mem_limit: 50M
 
-  # --------------------------------------------------------------------------------------------------------------------
   # Service: REPOCKET
-  # Site: https://link.repocket.co/WqgJ (referral)
-  # --------------------------------------------------------------------------------------------------------------------
   cash-mint_repocket:
     container_name: cash-mint_repocket-1
     image: repocket/repocket:latest
@@ -107,10 +90,7 @@ services:
     cpus: 0.1
     mem_limit: 50M
 
-  # --------------------------------------------------------------------------------------------------------------------
   # Service: PAWNS
-  # Site: https://pawns.app/?r=3284830 (referral)
-  # --------------------------------------------------------------------------------------------------------------------
   cash-mint_pawns:
     container_name: cash-mint_pawns
     image: iproyal/pawns-cli:latest
@@ -126,10 +106,7 @@ services:
     cpus: 0.1
     mem_limit: 50M
 
-  # --------------------------------------------------------------------------------------------------------------------
   # Service: PROXYRACK
-  # Site: https://peer.proxyrack.com/ref/phzcnf5r7nq1idtx4rhgglt6ayrtvqgkb8nwhkic (referral)
-  # --------------------------------------------------------------------------------------------------------------------
   cash-mint_proxyrack:
     container_name: cash-mint_proxyrack
     image: proxyrack/pop:latest
@@ -142,10 +119,7 @@ services:
     cpus: 0.1
     mem_limit: 50M
 
-  # --------------------------------------------------------------------------------------------------------------------
   # Service: TRAFFMONETIZER
-  # Site: https://traffmonetizer.com/?aff=1612556 (referral)
-  # --------------------------------------------------------------------------------------------------------------------
   cash-mint_traffmonetizer:
     container_name: cash-mint_traffmonetizer
     image: traffmonetizer/cli_v2:latest
@@ -162,11 +136,7 @@ services:
     cpus: 0.1
     mem_limit: 50M
 
-  # --------------------------------------------------------------------------------------------------------------------
   # Service: MYSTERIUM
-  # Site: https://mystnodes.co/?referral_code=qGKgwIJSEpxvOKhZUb1BDsa1xSdPCLjTAWaacX25 (referral)
-  # Local Dashboard: http://localhost:<MYSTERIUM_DASHBOARD_PORT>
-  # --------------------------------------------------------------------------------------------------------------------
   cash-mint_mysterium:
     container_name: cash-mint_mysterium
     image: mysteriumnetwork/myst:latest
@@ -186,10 +156,6 @@ services:
     cpus: 0.3
     mem_limit: 250M
 
-  # ----------------------------------------------------------------------------------------------------------------------
-  # If you know what to do, this option may help in implement a more secure architecture by isolating
-  # different components of the application.
-  # ----------------------------------------------------------------------------------------------------------------------
   networks:
     # network for cash-mint_* containers
     cash-mint_network:
