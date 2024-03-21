@@ -1,7 +1,6 @@
 version: "23" # Adjust the version as needed
 
 services:
-
   # Service: BITPING
   cash-mint_bitping:
     container_name: cash-mint_bitping
@@ -156,11 +155,11 @@ services:
     cpus: 0.3
     mem_limit: 250M
 
-  networks:
-    # network for cash-mint_* containers
-    cash-mint_network:
-      driver: bridge
-      ipam:
-        driver: default
-        config:
-          - subnet: 20.20.0.0/24
+# network for cash-mint_* containers
+networks:
+  cash-mint_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 20.20.0.0/24
