@@ -1,26 +1,26 @@
-version: '23'
+version: '3' # Adjust the version as needed
 
-  # --------------------------------------------------------------------------------------------------------------------
-  # Service: BITPING
-  # Site: https://bitping.com
-  # --------------------------------------------------------------------------------------------------------------------
-  cash-mint_bitping:
-    container_name: cash-mint_bitping
-    image: bitping/bitpingd:latest
-    restart: always
-    volumes:
-      - ${CFG_WORKING_DIRECTORY}/.appdata/bitping:/root/.bitpingd
-    entrypoint: >
-      /bin/bash -c "
-      /app/bitpingd login
-      --email '${CFG_SERVICE_EMAIL}'
-      --password '${CFG_SERVICE_PASSWORD}' &&
-      /app/docker.sh"
-    networks:
-      cash-mint_network:
-        ipv4_address: 20.20.0.3
-    cpus: 0.1
-    mem_limit: 50M
+# --------------------------------------------------------------------------------------------------------------------
+# Service: BITPING
+# Site: https://bitping.com
+# --------------------------------------------------------------------------------------------------------------------
+cash-mint_bitping:
+  container_name: cash-mint_bitping
+  image: bitping/bitpingd:latest
+  restart: always
+  volumes:
+    - ${CFG_WORKING_DIRECTORY}/.appdata/bitping:/root/.bitpingd
+  entrypoint: >
+    /bin/bash -c "
+    /app/bitpingd login
+    --email '${CFG_SERVICE_EMAIL}'
+    --password '${CFG_SERVICE_PASSWORD}' &&
+    /app/docker.sh"
+  networks:
+    cash-mint_network:
+      ipv4_address: 20.20.0.3
+  cpus: 0.1
+  mem_limit: 50M
 
   # --------------------------------------------------------------------------------------------------------------------
   # Service: EARNFM
