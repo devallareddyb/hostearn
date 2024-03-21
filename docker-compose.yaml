@@ -1,37 +1,5 @@
 version: '23'
 
-services:
-  # --------------------------------------------------------------------------------------------------------------------
-  # Service Util: WATCHTOWER
-  # Site: https://github.com/containrrr/watchtower
-  # Usage: Watchtower will update the cash-mint containers version and
-  #        will restart it with the same commands as the first-run.
-  # --------------------------------------------------------------------------------------------------------------------
-  cash-mint-util_watchtower:
-    container_name: cash-mint-util_watchtower
-    image: containrrr/watchtower:latest
-    restart: always
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: >
-      --cleanup
-      --log-level trace
-      --include-restarting
-      --include-stopped
-      --interval ${CFG_CONTAINER_UPDATE_INTERVAL_SEC}
-      cash-mint_bitping
-      cash-mint_earnfm
-      cash-mint_honeygain
-      cash-mint_mysterium
-      cash-mint_packetstream
-      cash-mint_pawns
-      cash-mint_proxylite
-      cash-mint_proxyrack
-      cash-mint_repocket
-      cash-mint_traffmonetizer
-    networks:
-      cash-mint_network:
-        ipv4_address: 20.20.0.2
   # --------------------------------------------------------------------------------------------------------------------
   # Service: BITPING
   # Site: https://bitping.com
