@@ -1,4 +1,4 @@
-version: "23" # Adjust the version as needed
+version: "24" # Adjust the version as needed
 
 services:
   # Service: BITPING
