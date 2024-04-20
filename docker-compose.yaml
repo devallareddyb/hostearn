@@ -135,25 +135,65 @@ services:
     cpus: 0.1
     mem_limit: 50M
 
-  # Service: MYSTERIUM
-  cash-mint_mysterium:
-    container_name: cash-mint_mysterium
-    image: mysteriumnetwork/myst:latest
+  # Service: SPEEDSHARE
+  cash-mint_speedshare:
+    container_name: cash-mint_speedshare
+    image: mrcolorrain/speedshare
     restart: always
-    volumes:
-      - ${CFG_WORKING_DIRECTORY}/.appdata/mysterium:/var/lib/mysterium-node
-    cap_add:
-      - NET_ADMIN
-    ports:
-      - "4449:4449"
-    command: >
-      service 
-      --agreed-terms-and-conditions
+    hostname: ${CFG_NODENAME}
+    environment:
+            - CODE=${CFG_SPEEDSHARE_AUTH_CODE}
+            - SPEEDSHARE_UUID=${CFG_UUID}
+    platform: linux/amd64
     networks:
       cash-mint_network:
         ipv4_address: 20.20.0.12
-    cpus: 0.3
-    mem_limit: 250M
+    cpus: 0.1
+    mem_limit: 50M
+
+  # Service: GRASS
+  cash-mint_grass:
+    container_name: cash-mint_grass
+    image: mrcolorrain/grass
+    restart: always
+    environment:
+            - GRASS_USER=${CFG_SERVICE_EMAIL}
+            - GRASS_PASS=$CFG_SERVICE_PASSWORD}
+    networks:
+      cash-mint_network:
+        ipv4_address: 20.20.0.13
+    cpus: 0.1
+    mem_limit: 50M
+
+  # Service: SPIDE
+  cash-mint_spide:
+    container_name: cash-mint_spide
+    image: xterna/spide-network
+    restart: always
+    platform: linux/amd64
+    networks:
+      cash-mint_network:
+        ipv4_address: 20.20.0.14
+    cpus: 0.1
+    mem_limit: 50M
+
+  # Service: EARNAPP
+  cash-mint_earnapp:
+    container_name: cash-mint_earnapp
+    image: madereddy/earnapp
+    restart: always
+    environment:
+            - EARNAPP_UUID=${CFG_UUID}
+            - EARNAPP_TERM=yes
+    platform: linux/amd64
+    volumes:
+      - ${CFG_WORKING_DIRECTORY}/.appdata/earnapp:/root/.earnappd
+    networks:
+      cash-mint_network:
+        ipv4_address: 20.20.0.15
+    cpus: 0.1
+    mem_limit: 50M
+
 
 # network for cash-mint_* containers
 networks:
